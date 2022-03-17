@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/reset.min.css"
+      integrity="sha512-Mjxkx+r7O/OLQeKeIBCQ2yspG1P5muhAtv/J+p2/aPnSenciZWm5Wlnt+NOUNA4SHbnBIE/R2ic0ZBiCXdQNUg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/reveal.min.css"
+      integrity="sha512-og4MAAhv7j2gLmZ2HNWT/ZqzBvrEWGE+fxjhQN+Svg2jsPaM3HcYF2rLTRzvzbYkp/W4eMFciBsdIHHvsTsxjQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/theme/league.min.css"
+    />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/plugin/highlight/monokai.min.css"
+      integrity="sha512-z8wQkuDRFwCBfoj7KOiu1MECaRVoXx6rZQWL21x0BsVVH7JkqCp1Otf39qve6CrCycOOL5o9vgfII5Smds23rg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="stylesheet" href="../../assets/slides.aefbea7f.css" />
+    <link rel="stylesheet" href="../../assets/1.introduction.b78dbce8.css" />
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>3D Graphics with Three.JS</h1>
+          <a href="https://github.com/Zagoman/helloworld-3d" target="_blank"
+            ><small>Github Repository</small></a
+          >
+        </section>
+        <section>
+          <h2>By the end of this presentation, I should...</h2>
+          <ol>
+            <li>Understand what a Renderer does</li>
+            <li>Understand what a Scene is</li>
+            <li>Have an idea of how to create an Object</li>
+            <li>Be able to visualise the X, Y, and Z Axis</li>
+            <li>
+              Have an idea of the relationship between the Camera and the Scene
+            </li>
+          </ol>
+        </section>
+        <section>
+          <section>
+            <h2>What is Three.js?</h2>
+            <blockquote cite="https://en.wikipedia.org/wiki/Three.js">
+              <p>
+                "Three.js is a cross-browser JavaScript library and application
+                programming interface (API) used to create and display animated
+                3D computer graphics in a web browser using WebGL."
+              </p>
+              <a href="https://en.wikipedia.org/wiki/Three.js" target="_blank">
+                <small> https://en.wikipedia.org/wiki/Three.js </small>
+              </a>
+            </blockquote>
+          </section>
+          <section>
+            <h2>What does that even mean?</h2>
+            <ul>
+              <li>
+                <p>Cross-browser</p>
+                <ul>
+                  <li><p>Works in Multiple browsers</p></li>
+                </ul>
+              </li>
+              <li>
+                <p>JavaScript Library</p>
+                <ul>
+                  <li>
+                    <p>
+                      An useful amount of abstraction to make it easy to perform
+                      a task
+                    </p>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+          <section>
+            <ul>
+              <li>
+                <p>
+                  Creating and animating 3D graphics in the browser using WebGL
+                </p>
+                <ul>
+                  <li>
+                    <p>
+                      To create 3D in the browser, a JavaScript API called WebGL
+                      must be used, and with Three.js, this process becomes
+                      easier.
+                    </p>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h2>Blablabla, a bunch of words!</h2>
+            <p>Show me what it can do</p>
+          </section>
+          <section>
+            <a href="https://vr.ff.com/us/" target="_blank"
+              >https://vr.ff.com/us/</a
+            >
+          </section>
+          <section>
+            <h2>OMG, Are you going to teach me how to code this website?</h2>
+            <p>No!</p>
+            <p>
+              <span>But...</span
+              ><span>
+                I am going to teach you the concepts, and the very basics</span
+              >
+            </p>
+          </section>
+          <section>
+            <h2>This is what you are going to be able to code</h2>
+            <a href="https://zagoman.github.io/helloworld-3d/" target="_blank"
+              >Your "Hello, world" in 3D</a
+            >
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Let's get it started</h2>
+            <p>Fist you will need to create a Canvas in the HTML</p>
+            <p>Then you need to link the JavaScript file to the HTML file</p>
+            <pre><code  data-line-numbers="1|2" data-trim>
+                      <canvas id="myCanvas" width="800" height="400"></canvas>
+                      <script src="hello-world.js" type="module"></script>
+              </code></pre>
+          </section>
+          <section>
+            <p>
+              Then you need to import the Three.js Library into your JavaScript
+              file
+            </p>
+            <pre>
+                  <code data-trim>
+                      import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
+                  </code>
+              </pre>
+            <p>
+              This line of code imports everything (<span class="highlight-blue"
+                >*</span
+              >) from the <span class="highlight-blue">THREE</span> folder
+              inside the link given
+            </p>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Now we need to understand what a Renderer is</h2>
+          </section>
+          <section>
+            <p>
+              A renderer will capture the relationship between a
+              <span class="highlight-blue">Camera</span> and a
+              <span class="highlight-blue">Scene</span>
+            </p>
+            <p>
+              The renderer <span class="highlight-blue">draws</span> the the
+              portion of 3D Objects present on the scene, that are visible
+              through the camera "lens"
+            </p>
+          </section>
+          <section>
+            <h2>Still confusing... Let's put you in the story</h2>
+            <p>
+              Let's imagine you are a photographer, and you arrive to a
+              beautiful landscape. You want to capture this landscape in a
+              picture fomat.
+            </p>
+          </section>
+          <section>
+            <p>
+              In this scenario, the landscape is the
+              <span class="highlight-blue">Scene</span>, and when you take an
+              image, you are using your "camera" to take that image. The result
+              of you pointing your camera to the scene and taking a photo,
+              produces a <span class="highlight-blue">Render</span> of an image.
+            </p>
+            <p>Therefore, the Renderer is what produces this image.</p>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Let's Create a Renderer</h2>
+          </section>
+          <section>
+            <p>
+              After you add you import Three.js' library, select the canvas you
+              created, then create the renderer passing to it where it should
+              render to, which is the canvas element.
+            </p>
+
+            <pre>
+                <code data-trim data-line-numbers="1|4|7">
+                  import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
+  
+                  //Select your canvas
+                  const canvas = document.querySelector("#myCanvas");
+  
+                  //Instanciating or Creating a new Renderer
+                  const renderer = new THREE.WebGLRenderer({ canvas: canvas });
+                </code>
+              </pre>
+            <p>Ps.: The renderer needs an Object as a parameter.</p>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>
+              Now we need to create a
+              <span class="highlight-blue">Scene</span> and a
+              <span class="highlight-blue">Camera</span>
+            </h2>
+          </section>
+          <section>
+            <p>but first, let's undertand them, and their relationship</p>
+            <img
+              src="https://threejs.org/manual/resources/images/threejs-structure.svg"
+              alt="3D environment structure"
+              class="r-stretch"
+            />
+            <a
+              href="https://threejs.org/manual/#en/fundamentals"
+              target="_blank"
+              ><small>https://threejs.org/manual/#en/fundamentals</small></a
+            >
+          </section>
+          <section>
+            <a href="https://threejs.org/manual/#en/cameras" target="_blank"
+              ><small>https://threejs.org/manual/#en/cameras</small></a
+            >
+            <img
+              src="https://threejs.org/manual/resources/frustum-3d.svg"
+              alt="Frustrum"
+              class="r-stretch"
+            />
+          </section>
+          <section>
+            <p>
+              For the camera, we will create the FOV, Aspect-ratio, Near and Far
+            </p>
+            <pre>
+                <code data-trim data-line-numbers="6|7|8|9|10">
+                  /** 
+                  * Previous code
+                  */
+  
+                  //creating the camera
+                  const fov = 75 //in degrees
+                  const aspect = 2 // width / height
+                  const near = 0.01 //how close to the lens
+                  const far = 5 // how far from the lens
+                  const camera = new THREE.PerspectiveCamera(fov, aspect, near, far) //the actual camera
+                </code>
+              </pre>
+          </section>
+          <section>
+            <p>Now it is the Scene's turn</p>
+            <pre>
+                <code data-trim data-line-numbers="6">
+                  /** 
+                  * Previous code
+                  */
+  
+                  //creating the Scene
+                  const scene = new THREE.Scene();
+                  
+                </code>
+              </pre>
+          </section>
+        </section>
+        <section>
+          <h2>Great, now we have a Renderer, a Scene and the Camera</h2>
+          <p>Why can't we see anything?</p>
+        </section>
+        <section>
+          <section>
+            <h2>Okay, so let's create a box geometry to add to the scene.</h2>
+          </section>
+          <section>
+            <p>
+              A box has 6 sides, but it contains 3 measurements. The width,
+              height and depth.
+            </p>
+            <p>
+              To create the box, we also need its material, it can be as simple
+              as a color
+            </p>
+            <pre>
+                <code data-trim data-line-numbers="6-8|9|10|13|16">
+                  /** 
+                  * Previous code
+                  */
+  
+                  //creating a box
+                  const boxWidth = 1;
+                  const boxHeight = 1;
+                  const boxDepth = 1;
+                  const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+                  const material = new THREE.MeshBasicMaterial({color: 0xff0000});
+  
+                  //Combine all items together
+                  const box = new THREE.Mesh(geometry, material);
+  
+                  //Inserting our box into the Scene
+                  scene.add(box)
+                  
+                </code>
+              </pre>
+          </section>
+          <section>
+            <h2>I still can't see anything, shouldn't I see it by now?</h2>
+          </section>
+          <section>
+            <p>The box now exists, but the problem is the camera.</p>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Moving the camera around</h2>
+          </section>
+          <section>
+            <p>to move the camera, we have to understand the X, Y and Z axis</p>
+            <img
+              src="https://threejs.org/manual/resources/scene-down.svg"
+              alt="x, y, z axis"
+              class="r-stretch"
+            />
+            <a
+              href="https://threejs.org/manual/#en/fundamentals"
+              target="_blank"
+              ><small>https://threejs.org/manual/#en/fundamentals</small></a
+            >
+          </section>
+          <section>
+            <p>
+              we can move the camera in space, moving its position with its X, Y
+              and Z coordinations
+            </p>
+            <pre>
+                <code data-trim data-line-numbers="12-14">
+                  /** 
+                  * Previous code
+                  */
+  
+                  //creating the camera
+                  const fov = 75 //in degrees
+                  const aspect = 2 // width / height
+                  const near = 0.01 //how close to the lens
+                  const far = 5 // how far from the lens
+                  const camera = new THREE.PerspectiveCamera(fov, aspect, near, far) //the actual camera
+  
+                  camera.position.z = 3;
+                  camera.position.x = 0;
+                  camera.position.y = 0;
+                </code>
+              </pre>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Now our box look like a square</h2>
+          </section>
+          <section>
+            <p>
+              We do the same that we did with the camera, we move the box in
+              space.
+            </p>
+            <pre>
+                <code data-trim data-line-numbers="7-9">
+                  /** 
+                  * Previous code
+                  */
+  
+                  //Combine all items together
+                  const box = new THREE.Mesh(geometry, material);
+                  box.position.z = 0;
+                  box.position.x = 2;
+                  box.position.y = 0;
+  
+                  //Inserting our box into the Scene
+                  scene.add(box)
+                  
+                </code>
+              </pre>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Where can I learn more?</h1>
+            <p>
+              Three.js' documentation is really good, and really extensive. So
+              the first approach should be through their website, in their
+              fundamentals section.
+            </p>
+            <a
+              href="https://threejs.org/manual/#en/fundamentals"
+              target="_blank"
+              >https://threejs.org/manual/#en/fundamentals</a
+            >
+          </section>
+          <section>
+            <h2>Other resources</h2>
+            <p>Bruno Simon's Course</p>
+            <a href="https://threejs-journey.com/" target="_blank"
+              >https://threejs-journey.com/</a
+            >
+            <p>SimonDev's Youtube Channel</p>
+            <a
+              href="https://www.youtube.com/channel/UCEwhtpXrg5MmwlH04ANpL8A"
+              target="_blank"
+              >https://www.youtube.com/channel/UCEwhtpXrg5MmwlH04ANpL8A</a
+            >
+          </section>
+        </section>
+        <section>
+          <h2>We've made it!</h2>
+          <a href="#/1">Now let's recap</a>
+        </section>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/reveal.min.js"
+      integrity="sha512-/wlhXEDdbvt3WbfQwgZ4hRehxquuDDLja5DV0lyoW+5kSVaCaQV9EAEU6AmpAkXd+S5yV78TJK/+YqR0uy8h4Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/plugin/notes/notes.min.js" integrity="sha512-v2co+5nr0bgHekutTzF5jAB0UAjM95dpCF7VVw7WsFCjfxonbQo8Vwl487tNYl0iHWHHGV4o5xKBp5ifyhJkWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/plugin/markdown/markdown.min.js" integrity="sha512-KSOrBsj0WKbq6xcEboor7XHEq+QQNVWXJ4IFXC/k7aR8ZATkUPA01ERRFMtkkApsGs71JpygBvs3eRNLammVoA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.2.1/plugin/highlight/highlight.min.js"
+      integrity="sha512-U3fPDUX5bMrn1wnYqjaK44MFA9E6MKS+zPAg9WPAGF5XhReBeDj3FGaA831CjueG+YJxYA3WaO/m33kMIoOs/A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+        progress: true,
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealHighlight], //RevealMarkdown, RevealNotes
+      });
+    </script>
+    <script src="../../assets/slides.34ce01c0.js"></script>
+  </body>
+</html>
